@@ -22,6 +22,7 @@ $(document).ready(function() {
     //When page first loads, the box-shadow text will appear in the .result
     $('.result').text("box-shadow:    ;")
     $('.copy-icon').show()
+    $(".tooltiptext").text("Copy box-shadow declaration").css({"width": "210px", "left": "50%"})
     
     //Function to let users upload images 
     $("#file-uploader").on("input", function(event) {
@@ -201,13 +202,22 @@ $(document).ready(function() {
       }
       
       if($("#custom-shape").is(":checked")) {
-        $('.square').css("box-shadow", result)
+        $('.square').css({
+          "box-shadow": result,
+          "-webkit-box-shadow": result,
+          "-moz-box-shadow": result
+        })
       } else if ($('#upload-image').is(":checked")) {
-        $('.image').css("box-shadow", result)
+        $('.image').css({
+          "box-shadow": result,
+          "-webkit-box-shadow": result,
+          "-moz-box-shadow": result
+        })
       }
       
       $('.result').text(`box-shadow: ${result};`)
       $('.copy-icon').show()
+      $(".tooltiptext").text("Copy box-shadow declaration").css({"width": "210px", "left": "50%"})
     }
     
     
@@ -385,6 +395,7 @@ $(document).ready(function() {
         document.execCommand("copy");
         temp.remove();
         $(this).addClass("clicked")
+        $(".tooltiptext").text("Copied!").css({"width": "100px", "left": "145%"})
      },
       mouseup: function() {
         $(this).removeClass('clicked')
